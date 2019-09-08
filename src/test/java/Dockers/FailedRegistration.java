@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FailedRegistration {
     @Test
-    public  void start() {
+    public void start() {
         System.setProperty("webdriver.chrome.driver", "D:\\Oksana\\chromedriver\\chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
@@ -24,7 +24,7 @@ public class FailedRegistration {
 
         WebElement email = driver.findElement(By.name("email"));
         WebElement password = driver.findElement(By.name("pwd"));
-        WebElement button = driver.findElement (By.xpath("//button[@class='btn btn-block btn-tertiary btn-join']"));
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-block btn-tertiary btn-join']"));
 
         email.sendKeys("ksyu");
         password.sendKeys("test");
@@ -32,14 +32,110 @@ public class FailedRegistration {
 
         WebElement warnalert = driver.findElement(By.xpath("//span[@id='register.emailError']"));
 
-        if (warnalert.isDisplayed()){
+        if (warnalert.isDisplayed()) {
             System.out.println("Warning alert is displayed" + " " + warnalert.getText());
             driver.quit();
-        }
-        else {
+        } else {
             System.out.println("No warning alert is displayed" + " " + warnalert.getText());
             driver.quit();
         }
 
+    }
+
+    @Test
+    public void validationEmail() {
+        System.setProperty("webdriver.chrome.driver", "D:\\Oksana\\chromedriver\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.dockers.com/US/en_US/login");
+        WebElement email = driver.findElement(By.name("email"));
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-block btn-tertiary btn-join']"));
+
+        email.click();
+        button.click();
+
+        WebElement warnalert = driver.findElement(By.xpath("//span[@id='register.emailError']"));
+
+        if (warnalert.isDisplayed()) {
+            System.out.println("Warning alert is displayed" + " " + warnalert.getText());
+            driver.quit();
+        } else {
+            System.out.println("No warning alert is displayed" + " " + warnalert.getText());
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void validationPass() {
+        System.setProperty("webdriver.chrome.driver", "D:\\Oksana\\chromedriver\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.dockers.com/US/en_US/login");
+        WebElement email = driver.findElement(By.name("email"));
+        WebElement password = driver.findElement((By.name("pwd")));
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-block btn-tertiary btn-join']"));
+
+        password.click();
+        email.sendKeys("oksanamas2017@gmail.com");
+        button.click();
+
+        WebElement warnalert = driver.findElement(By.xpath("//span[@id='pwd.errors']"));
+        if (warnalert.isDisplayed()) {
+            System.out.println("Warning message is displayed" + "" + warnalert.getText());
+            driver.quit();
+        } else {
+            System.out.println("No warning message is displayed" + "" + warnalert.getText());
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void wrongEmail() {
+        System.setProperty("webdriver.chrome.driver", "D:\\Oksana\\chromedriver\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.dockers.com/US/en_US/login");
+        WebElement email = driver.findElement(By.name("email"));
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-block btn-tertiary btn-join']"));
+
+        email.sendKeys("oksanamas2017gmail.com");
+        button.click();
+
+        WebElement warnalert = driver.findElement(By.xpath("//span[@id='register.emailError']"));
+        if (warnalert.isDisplayed()) {
+            System.out.println("Warning message is displayed" + "" + warnalert.getText());
+            driver.quit();
+        } else {
+            System.out.println("No warning message is displayed" + "" + warnalert.getText());
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void wrongPass() {
+        System.setProperty("webdriver.chrome.driver", "D:\\Oksana\\chromedriver\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.dockers.com/US/en_US/login");
+        WebElement email = driver.findElement(By.name("email"));
+        WebElement password = driver.findElement((By.name("pwd")));
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-block btn-tertiary btn-join']"));
+
+        password.sendKeys("aaaaaaa");
+        email.sendKeys("oksanamas2017@gmail.com");
+        button.click();
+
+        WebElement warnalert = driver.findElement(By.xpath("//span[@id='pwd.errors']"));
+        if (warnalert.isDisplayed()) {
+            System.out.println("Warning message is displayed" + "" + warnalert.getText());
+            driver.quit();
+        } else {
+            System.out.println("No warning message is displayed" + "" + warnalert.getText());
+            driver.quit();
+        }
     }
 }
