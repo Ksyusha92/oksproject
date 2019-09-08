@@ -91,6 +91,7 @@ public class FailedRegistration {
         }
     }
 
+
     @Test
     public void wrongEmail() {
         System.setProperty("webdriver.chrome.driver", "D:\\Oksana\\chromedriver\\chromedriver.exe");
@@ -138,4 +139,5 @@ public class FailedRegistration {
             driver.quit();
         }
     }
+    @Test;
 }
